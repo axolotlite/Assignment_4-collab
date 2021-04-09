@@ -18,5 +18,48 @@ public class FileDataCounter {
     //TODO test it
     public static void main(String[] args) {
 
+        int Count_Char=0,Count_Word=0,Count_Line=0;
+
+        Scanner InputFile = new Scanner(System.in);
+        File file = new File(InputFile.next());
+
+     if(file.exists())
+      System.out.println("File exits");
+
+     else {
+         file.createNewFile();
+               PrintWriter NewFile= new PrintWriter(file);
+          NewFile.println("Good Boring");
+          NewFile.println("I wish");
+          NewFile.println("A Good Day For You");
+          NewFile.close();
+     }
+        String Line;
+        String Words[];
+
+        Scanner Input = new Scanner(file);
+
+
+        while (Input.hasNext()) {
+            Line = Input.nextLine();
+            Words = Line.split(" ");
+            for(int i=0;i<Words.length;i++)
+            {
+                    Count_Word ++;
+            }
+
+            for(int i=0;i<Line.length();i++)
+            {
+                if(Line.charAt(i)!=' '&&Line.charAt(i)!='\n')
+                    Count_Char ++;
+            }
+
+            Count_Line++;
+          }
+
+        System.out.println(Count_Line);
+        System.out.println(Count_Word);
+        System.out.println(Count_Char);
+
     }
 }
