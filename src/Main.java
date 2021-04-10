@@ -4,10 +4,9 @@
  */
 public class Main {
     public static void main(String[] args) {
-        //TODO create an instance of both question classes for testing.
-
-        //TODO debug main of the FileDataCounter
-
-        //TODO debug main of the RandomNumFileGenerator
+        FileDataCounter f1 = new FileDataCounter();
+        RandomNumFileGenerator f2 = new RandomNumFileGenerator();
+        f1.main(args);
+        f2.main(args);
     }
 }

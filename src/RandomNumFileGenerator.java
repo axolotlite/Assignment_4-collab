@@ -1,4 +1,8 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Sheet 5 Question 7
@@ -10,13 +14,42 @@ import java.io.File;
  */
 public class RandomNumFileGenerator {
     //TODO implement the variables
-
-    //TODO create a function that creates the random string
-
-    //TODO create another functions that checks whether the file exists or create a new one
+    private String loc;
+    private File io;
+    private PrintWriter writer;
+    private Random seed = new Random();
+    public RandomNumFileGenerator(){}
+    public RandomNumFileGenerator(String loc){
+        this.loc = loc;
+        try{
+            io = new File(loc);
+            writer = new PrintWriter(io);
+        }
+        catch (FileNotFoundException e){
+            System.out.println("File not found, please check if it exists");
+            return;
+        }
+        for(int i=0;i<100;i++) writer.printf("%d ",seed.nextInt(Integer.MAX_VALUE));
+        writer.close();
+    }
 
     //TODO test it
     public static void main(String[] args) {
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        String loc =  "tst.txt";
+        new RandomNumFileGenerator(loc);
+        try {
+            Scanner reader = new Scanner(new File(loc));
+            while(reader.hasNext()){
+                int num = Integer.parseInt(reader.next());
+                data.add(num);
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Really?");
+        }
 
+        Collections.sort(data);
+        System.out.println(data.toString());
     }
 }
